@@ -27,12 +27,11 @@ class _SplashScreenState extends State<SplashScreen>
       vsync: this,
     );
     animation =
-        CurvedAnimation(parent: animationController, curve: Curves.ease);
+        CurvedAnimation(parent: animationController, curve: Curves.elasticOut);
 
     animationController.forward();
     animationController.addListener(() {
       setState(() {});
-      print(animation.value);
     });
 
     animationController.addStatusListener((status) {
@@ -50,9 +49,12 @@ class _SplashScreenState extends State<SplashScreen>
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SvgPicture.asset(
-              'assets/images/flash_icon.svg',
-              width: 200.0 * animation.value,
+            Hero(
+              tag: 'flash_icon',
+              child: SvgPicture.asset(
+                'assets/images/flash_icon.svg',
+                width: 200.0 * animation.value,
+              ),
             ),
             AnimatedTextKit(
               animatedTexts: [
