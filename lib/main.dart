@@ -1,18 +1,27 @@
 import 'package:flutter/material.dart';
 
+import 'login_screen.dart';
+import 'registration_screen.dart';
+import 'splash_screen.dart';
+
 void main() {
-  runApp(const MyApp());
+  runApp(const FlashChat());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class FlashChat extends StatelessWidget {
+  const FlashChat({Key? key}) : super(key: key);
 
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Container(),
+      theme: ThemeData.dark(),
+      initialRoute: SplashScreen.screenId,
+      routes: {
+        SplashScreen.screenId: (context) => SplashScreen(),
+        RegistrationScreen.screenId: (context) => RegistrationScreen(),
+        LoginScreen.screenId: (context) => LoginScreen()
+      },
     );
   }
 }
-
