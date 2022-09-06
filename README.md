@@ -8,7 +8,7 @@ Flash chat app has the following functionality and features:
 
 * Implemented complex animation at splash screen.
 * Implemented well designed Sign In/Sign Up screens.
-* Implemented logic of showing password in TextField.
+* Implemented logic of showing/hiding password in TextField.
 * Implemented basic error handling for SignUp and SignIn operations.
 * Implemented Progress Indication button.
 
