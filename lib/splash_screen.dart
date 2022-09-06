@@ -1,4 +1,5 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flash_chat_flutter/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -22,6 +23,8 @@ class _SplashScreenState extends State<SplashScreen>
   @override
   void initState() {
     super.initState();
+    Firebase.initializeApp();
+
     animationController = AnimationController(
       duration: Duration(milliseconds: durationMs),
       vsync: this,

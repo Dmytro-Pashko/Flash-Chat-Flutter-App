@@ -1,5 +1,11 @@
+import 'package:flash_chat_flutter/registration_screen.dart';
+import 'package:flash_chat_flutter/rounded_email_text_field.dart';
+import 'package:flash_chat_flutter/rounded_password_text_field.dart';
+import 'package:flash_chat_flutter/rounded_progress_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+
+import 'auth.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String screenId = 'login_screen';
@@ -11,6 +17,33 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
+  final auth = AuthManager();
+
+  String email = '';
+  String password = '';
+  bool isShowPassword = false;
+  bool isLoading = false;
+  String error = '';
+
+  void signUp() async {
+    setState(() {
+      error = '';
+      isLoading = true;
+    });
+    try {
+      await auth.signIn(email, password);
+      setState(() {
+        isLoading = false;
+      });
+      //TODO go to chat screen.
+    } catch (e) {
+      setState(() {
+        error = e.toString();
+        isLoading = false;
+      });
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -21,7 +54,9 @@ class _LoginScreenState extends State<LoginScreen> {
             children: [
               getTopContent(),
               getCenterContent(),
-              SizedBox(height: 40,),
+              SizedBox(
+                height: 40,
+              ),
               getBottomContent(),
             ],
           ),
@@ -31,7 +66,8 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Widget getTopContent() {
-    return Expanded(
+    return Container(
+      padding: EdgeInsets.symmetric(vertical: 80),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
@@ -64,7 +100,7 @@ class _LoginScreenState extends State<LoginScreen> {
           Text(
             'Login',
             style: TextStyle(
-                fontSize: 35, fontFamily: 'IBMPlexSans', color: Colors.black),
+                fontSize: 35, fontFamily: 'Anton', color: Colors.black),
           ),
           Text(
             'Please login to continue',
@@ -75,68 +111,37 @@ class _LoginScreenState extends State<LoginScreen> {
             ),
           ),
           Padding(
-            padding: const EdgeInsets.only(top: 20),
-            child: Theme(
-              data: ThemeData(
-                primaryColor: Colors.black,
-                selectedRowColor: Colors.black,
-                focusColor: Colors.grey,
-              ),
-              child: TextField(
-                decoration: InputDecoration(
-                  labelText: 'Username',
-                  alignLabelWithHint: true,
-                  prefixIcon: Icon(Icons.person),
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10))),
-                  filled: true,
-                ),
-              ),
-            ),
-          ),
+              padding: const EdgeInsets.only(top: 20),
+              child: RoundedEmailTextField(
+                label: 'Email,',
+                isEnabled: !isLoading,
+                onValueChanged: (value) {
+                  email = value;
+                },
+              )),
           Padding(
-            padding: const EdgeInsets.only(top: 20),
-            child: Theme(
-              data: ThemeData(
-                primaryColor: Colors.black,
-                selectedRowColor: Colors.black,
-                focusColor: Colors.grey,
-              ),
-              child: TextField(
-                obscureText: true,
-                decoration: InputDecoration(
-                  labelText: 'password',
-                  alignLabelWithHint: true,
-                  prefixIcon: Icon(Icons.lock),
-                  border: OutlineInputBorder(
-                      borderRadius: BorderRadius.all(Radius.circular(10))),
-                  filled: true,
-                ),
-              ),
-            ),
-          ),
+              padding: const EdgeInsets.only(top: 20),
+              child: RoundedPasswordTextField(
+                label: 'password',
+                isEnabled: !isLoading,
+                isShowValue: isShowPassword,
+                onValueChanged: (value) {},
+                onShowPasswordClicked: () {
+                  setState(() {
+                    isShowPassword = !isShowPassword;
+                  });
+                },
+              )),
           SizedBox(
             height: 20,
           ),
           Container(
             width: double.infinity,
             height: 60,
-            child: TextButton(
-              onPressed: () {},
-              child: Text(
-                'Login ',
-                style: TextStyle(
-                  color: Colors.white,
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18,
-                  fontFamily: 'IBMPlexSans',
-                ),
-              ),
-              style: TextButton.styleFrom(
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(10),
-                  ),
-                  backgroundColor: Colors.black),
+            child: RoundedProgressButton(
+              label: 'Login',
+              isInProgress: isLoading,
+              onClick: () {},
             ),
           ),
         ],
@@ -165,7 +170,9 @@ class _LoginScreenState extends State<LoginScreen> {
           Container(
             height: 60,
             child: TextButton(
-              onPressed: () {},
+              onPressed: () {
+                Navigator.pushNamed(context, RegistrationScreen.screenId);
+              },
               child: Text(
                 'Create Account',
                 style: TextStyle(
