@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 import 'auth.dart';
+import 'chat_screen.dart';
 
 class LoginScreen extends StatefulWidget {
   static const String screenId = 'login_screen';
@@ -25,7 +26,7 @@ class _LoginScreenState extends State<LoginScreen> {
   bool isLoading = false;
   String error = '';
 
-  void signUp() async {
+  void signIn() async {
     setState(() {
       error = '';
       isLoading = true;
@@ -35,7 +36,7 @@ class _LoginScreenState extends State<LoginScreen> {
       setState(() {
         isLoading = false;
       });
-      //TODO go to chat screen.
+      Navigator.pushReplacementNamed(context, ChatScreen.screenId);
     } catch (e) {
       setState(() {
         error = e.toString();
@@ -113,7 +114,7 @@ class _LoginScreenState extends State<LoginScreen> {
           Padding(
               padding: const EdgeInsets.only(top: 20),
               child: RoundedEmailTextField(
-                label: 'Email,',
+                label: 'Email',
                 isEnabled: !isLoading,
                 onValueChanged: (value) {
                   email = value;
@@ -122,10 +123,12 @@ class _LoginScreenState extends State<LoginScreen> {
           Padding(
               padding: const EdgeInsets.only(top: 20),
               child: RoundedPasswordTextField(
-                label: 'password',
+                label: 'Password',
                 isEnabled: !isLoading,
                 isShowValue: isShowPassword,
-                onValueChanged: (value) {},
+                onValueChanged: (value) {
+                  password = value;
+                },
                 onShowPasswordClicked: () {
                   setState(() {
                     isShowPassword = !isShowPassword;
@@ -141,7 +144,9 @@ class _LoginScreenState extends State<LoginScreen> {
             child: RoundedProgressButton(
               label: 'Login',
               isInProgress: isLoading,
-              onClick: () {},
+              onClick: () {
+                signIn();
+              },
             ),
           ),
         ],

@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'login_screen.dart';
 import 'registration_screen.dart';
 import 'splash_screen.dart';
+import 'chat_screen.dart';
 
 void main() {
   runApp(const FlashChat());
@@ -20,7 +21,8 @@ class FlashChat extends StatelessWidget {
       routes: {
         SplashScreen.screenId: (context) => SplashScreen(),
         RegistrationScreen.screenId: (context) => RegistrationScreen(),
-        LoginScreen.screenId: (context) => LoginScreen()
+        LoginScreen.screenId: (context) => LoginScreen(),
+        ChatScreen.screenId: (context) => ChatScreen()
       },
     );
   }

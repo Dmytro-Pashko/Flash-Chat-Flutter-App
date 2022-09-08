@@ -19,7 +19,7 @@ class AuthManager {
       throw 'Password should contains at least 6 symbols.';
     }
     try {
-      await auth.signInWithEmailAndPassword(email: email, password: password);
+      await auth.createUserWithEmailAndPassword(email: email, password: password);
     } catch (e) {
       if (e is FirebaseAuthException) {
         print(e);

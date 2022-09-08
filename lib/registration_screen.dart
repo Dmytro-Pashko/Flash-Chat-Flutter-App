@@ -1,3 +1,4 @@
+import 'package:flash_chat_flutter/chat_screen.dart';
 import 'package:flash_chat_flutter/rounded_email_text_field.dart';
 import 'package:flash_chat_flutter/rounded_password_text_field.dart';
 import 'package:flash_chat_flutter/rounded_progress_button.dart';
@@ -34,7 +35,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
       setState(() {
         isLoading = false;
       });
-      //TODO go to chat screen.
+      Navigator.pushReplacementNamed(context, ChatScreen.screenId);
     } catch (e) {
       setState(() {
         error = e.toString();
@@ -125,7 +126,7 @@ class _RegistrationScreenState extends State<RegistrationScreen> {
               onValueChanged: (value) {
                 password = value;
               },
-              label: 'password',
+              label: 'Password',
               isEnabled: !isLoading,
               isShowValue: isShowPassword,
               onShowPasswordClicked: () {
