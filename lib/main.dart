@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-import 'login_screen.dart';
-import 'registration_screen.dart';
-import 'splash_screen.dart';
-import 'chat_screen.dart';
+import 'screens/chat_screen.dart';
+import 'screens/login_screen.dart';
+import 'screens/registration_screen.dart';
+import 'screens/splash_screen.dart';
 
 void main() {
   runApp(const FlashChat());

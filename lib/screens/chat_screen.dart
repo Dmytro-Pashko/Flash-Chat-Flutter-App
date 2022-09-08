@@ -1,8 +1,9 @@
-import 'package:flash_chat_flutter/auth.dart';
-import 'package:flash_chat_flutter/login_screen.dart';
-import 'package:flash_chat_flutter/message_repository.dart';
+import 'package:flash_chat_flutter/components/message_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+
+import '../components/auth.dart';
+import 'login_screen.dart';
 
 class ChatScreen extends StatefulWidget {
   static const String screenId = 'chat_screen';
@@ -93,13 +94,23 @@ class _ChatScreenState extends State<ChatScreen> {
         return Expanded(child: ListView(children: messageWidgets));
       }
     }
-    return Container();
+    return Expanded(
+      child: Container(
+        alignment: Alignment.center,
+        child: Text(
+          'No messages yet.',
+          style: TextStyle(
+            color: Colors.grey.shade900,
+          ),
+        ),
+      ),
+    );
   }
 
   Widget getMessageWidget(Message message) {
     return Container(
       width: double.infinity,
-      padding: EdgeInsets.symmetric(horizontal: 10,vertical: 5),
+      padding: EdgeInsets.symmetric(horizontal: 10, vertical: 5),
       child: Column(
         crossAxisAlignment: isMyMessage(message)
             ? CrossAxisAlignment.end
@@ -120,7 +131,16 @@ class _ChatScreenState extends State<ChatScreen> {
                       ? Colors.blue.shade200
                       : Color(0xFFEBEBEB),
                   width: 3.0),
-              borderRadius: BorderRadius.all(Radius.circular(15.0)),
+              borderRadius: isMyMessage(message)
+                  ? BorderRadius.only(
+                      topLeft: Radius.circular(15.0),
+                      bottomLeft: Radius.circular(15.0),
+                      bottomRight: Radius.circular(15.0),
+                    )
+                  : BorderRadius.only(
+                      topRight: Radius.circular(15.0),
+                      bottomLeft: Radius.circular(15.0),
+                      bottomRight: Radius.circular(15.0)),
             ),
             child: Padding(
               padding: const EdgeInsets.all(8.0),
@@ -138,8 +158,6 @@ class _ChatScreenState extends State<ChatScreen> {
       ),
     );
   }
-
-
 
   String convertTimeStamp(int timestamp) {
     return timestampFormat.format(

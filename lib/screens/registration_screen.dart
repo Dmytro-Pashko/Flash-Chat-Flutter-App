@@ -1,11 +1,11 @@
-import 'package:flash_chat_flutter/chat_screen.dart';
-import 'package:flash_chat_flutter/rounded_email_text_field.dart';
-import 'package:flash_chat_flutter/rounded_password_text_field.dart';
-import 'package:flash_chat_flutter/rounded_progress_button.dart';
+import 'package:flash_chat_flutter/widgets/rounded_email_text_field.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import 'auth.dart';
+import '../components/auth.dart';
+import '../widgets/rounded_password_text_field.dart';
+import '../widgets/rounded_progress_button.dart';
+import 'chat_screen.dart';
 
 class RegistrationScreen extends StatefulWidget {
   static const String screenId = 'registration_screen';

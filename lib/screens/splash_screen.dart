@@ -1,8 +1,9 @@
 import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:flash_chat_flutter/login_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+
+import 'login_screen.dart';
 
 class SplashScreen extends StatefulWidget {
   static const String screenId = 'splash_screen';

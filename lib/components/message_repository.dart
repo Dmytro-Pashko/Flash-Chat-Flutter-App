@@ -11,12 +11,13 @@ class MessageRepository {
       for (var doc in documents) {
         messages.add(Message(doc['msg_data'], doc['from'], doc['timestamp']));
       }
-      return messages.reversed.toList(growable: false);
+      messages.sort((a, b) => a.timestamp.compareTo(b.timestamp));
+      return messages;
     });
   }
 
   Future<void> addMessage(String messageData, String sender) async {
-    int timestamp = new DateTime.now().microsecondsSinceEpoch;
+    int timestamp = new DateTime.now().millisecondsSinceEpoch;
     var id = await _firestore.collection(_database).add(
       {'msg_data': messageData, 'from': sender, 'timestamp': timestamp},
     );
