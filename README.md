@@ -11,6 +11,8 @@ Flash chat app has the following functionality and features:
 * Implemented logic of showing/hiding password in TextField.
 * Implemented basic error handling for SignUp and SignIn operations.
 * Implemented Progress Indication button.
+* Implemented live chat based on streams of FireStore.
+* Implemented well designed chat screen.
 
 ## Screenshots
 ![](https://raw.githubusercontent.com/Dmytro-Pashko/Flash-Chat-Flutter-App/master/git_description/splash_animation.gif)
@@ -22,6 +24,11 @@ Flash chat app has the following functionality and features:
 ![](https://raw.githubusercontent.com/Dmytro-Pashko/Flash-Chat-Flutter-App/master/git_description/sign_up_progress.png)
 
 ![](https://raw.githubusercontent.com/Dmytro-Pashko/Flash-Chat-Flutter-App/master/git_description/sign_up_errors.png)
+
+![](https://raw.githubusercontent.com/Dmytro-Pashko/Flash-Chat-Flutter-App/master/git_description/chat_default.png)
+
+![](https://raw.githubusercontent.com/Dmytro-Pashko/Flash-Chat-Flutter-App/master/git_description/chat_message_active.png)
+
 
 ## License:
 This project is licensed under the [Apache 2 License](http://www.apache.org/licenses/LICENSE-2.0.html), meaning you can use it free of charge, without strings attached in commercial and non-commercial projects.
